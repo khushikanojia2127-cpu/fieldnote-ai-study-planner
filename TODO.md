@@ -30,3 +30,7 @@
 - Use the botanical-lab field-journal layout with the supplied four-band palette: deep periwinkle navy (`#405A98`), sky blue (`#70B7DF`), warm cream (`#FFF6DE`) and coral (`#F4889B`); keep botanical linework as a quiet motif and retain responsive accessible controls.
 - Increase the existing compact font sizes modestly (about one pixel at small sizes/roughly 7% across the scale), preserving readable hierarchy and avoiding clipping on desktop and mobile.
 - Provide AI functionality through a server-side Manus AI proxy using only configured platform runtime credentials; do not expose server credentials to browser code or require a separate provider key. Keep data local to the student's browser; do not add login, email/automatic reminders or publishing as part of this scope.
+
+## [ ] Production deployment contract
+- Include a root Dockerfile that uses the project's pinned pnpm toolchain and committed lockfile, installs dependencies under the checked-in lifecycle policy, builds the client/server, and starts `node dist/server.mjs` with `PORT` (default `3000`) on `0.0.0.0`.
+- Configure the server project with Webdev `deploy.dockerfilePath: "Dockerfile"` and `deploy.healthPath: "/api/health"`; ensure this path is an unauthenticated 2xx response and do not bake private runtime credentials into the image.
