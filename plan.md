@@ -33,18 +33,18 @@ Optional automatic/email deadline reminders, accounts/login, and publication are
 
 ## Design system
 
-- **Design Movement:** Botanical laboratory field journal — an editorial blend of pressed-leaf specimen notebooks and precise contemporary research instruments.
+- **Design Movement:** Botanical laboratory field journal recolored with the user's reference: precise field notes framed by confident blue color blocks, warm paper and a small coral signal.
 - **Core Principles:** Calm focus; legible evidence; student agency; precise, transparent AI.
-- **Color Philosophy:** Warm paper and pale mist green create a restorative study surface; deep spruce and near-black ink provide scientific clarity; restrained chartreuse marks active attention and completion. Keep contrast strong and avoid overusing green as generic decoration.
+- **Color Philosophy:** Deep periwinkle navy anchors navigation and primary actions; clear sky blue adds lift and progress; warm cream keeps the study surface soft; coral marks attention and quick actions. Preserve strong contrast and retain botanical linework as a quiet motif rather than a green color wash.
 - **Layout Paradigm:** A field-notes workspace: narrow, stable instrument-rail navigation; a wide working canvas; and context cards for “today,” upcoming deadlines and AI provenance. Use asymmetrical editorial sections rather than a centered grid of identical cards.
-- **Signature Elements:** Fine botanical linework and leaf-vein dividers; specimen-style subject chips with small swatch markers; ruled notebook and index-label details for study sessions and source notes.
+- **Signature Elements:** Fine botanical linework and leaf-vein dividers; specimen-style subject chips recolored with navy/blue/coral swatches; ruled notebook and index-label details for study sessions and source notes.
 - **Interaction Philosophy:** Direct manipulation, quick inline edits, clear completion controls and reversible scheduling changes. AI suggestions are drafts, not commands; always keep the source/context visible and explain conflicts before accepting a plan.
 - **Animation:** Subtle 140–220ms opacity/position transitions for opening panels and completing items; gentle progress-ring movement; reduced-motion support; no perpetual or distracting animation.
-- **Typography System:** A readable geometric sans such as Manrope (or system sans fallback) for interface/body copy paired with an editorial serif such as Fraunces (or Georgia fallback) for large headings and specimen names. Use tabular numerals for durations and progress; clear compact labels.
+- **Typography System:** DM Sans for interface/body copy paired with Fraunces for large headings and specimen names. Increase the existing compact type scale by roughly one pixel at small sizes (about 7% overall), keeping its hierarchy and tabular numerals for durations/progress.
 - **Brand Essence:** “Fieldnote turns your own coursework into a plan you can actually follow.” Personality: grounded, curious, encouraging.
 - **Brand Voice:** Clear, calm, student-to-student; name evidence and next action rather than making motivational promises. Examples: “A small, focused block is still progress.” “Drafted from your topics — check the order, then make it yours.”
-- **Wordmark & Logo:** A distinctive “Fieldnote” wordmark paired with a small custom sprout/leaf-vein glyph nested in a rounded specimen-tab outline; do not use a generic default text logo.
-- **Signature Brand Color:** Deep chlorophyll `#235B45`, balanced with warm paper `#F6F5ED`, mist sage `#E3ECE2`, ink `#202821`, and a restrained pollen/chartreuse accent `#C6D765`.
+- **Wordmark & Logo:** A distinctive “Fieldnote” wordmark paired with a small custom sprout/leaf-vein glyph nested in a rounded specimen-tab outline; recolor the mark in navy, cream and coral.
+- **Signature Brand Color:** Deep periwinkle navy `#405A98`, balanced with sky blue `#70B7DF`, warm cream `#FFF6DE` and coral `#F4889B`.
 
 ## Serving and dependencies
 

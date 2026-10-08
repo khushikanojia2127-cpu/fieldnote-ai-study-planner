@@ -26,7 +26,7 @@ export function makeSampleData(): AppData {
           "Loops",
           "Functions",
         ],
-        color: "#719677",
+        color: "#405A98",
       },
     ],
     tasks: [

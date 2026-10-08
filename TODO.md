@@ -26,6 +26,7 @@
 - Track completed tasks, completed study sessions, subject-level progress, quiz performance and study consistency.
 - Clearly mark generated content, make AI output editable, communicate uncertainty where applicable, remind students to verify AI-generated information, and guide them away from overdependence.
 
-## [x] Botanical-lab responsive interface and integrated AI service
-- Use the approved botanical-lab field-journal visual direction: warm paper and mist sage, deep chlorophyll identity color, restrained pollen/chartreuse accents, botanical linework/specimen labels, readable editorial typography and responsive accessible controls.
+## [x] Botanical-lab interface, reference palette and integrated AI service
+- Use the botanical-lab field-journal layout with the supplied four-band palette: deep periwinkle navy (`#405A98`), sky blue (`#70B7DF`), warm cream (`#FFF6DE`) and coral (`#F4889B`); keep botanical linework as a quiet motif and retain responsive accessible controls.
+- Increase the existing compact font sizes modestly (about one pixel at small sizes/roughly 7% across the scale), preserving readable hierarchy and avoiding clipping on desktop and mobile.
 - Provide AI functionality through a server-side Manus AI proxy using only configured platform runtime credentials; do not expose server credentials to browser code or require a separate provider key. Keep data local to the student's browser; do not add login, email/automatic reminders or publishing as part of this scope.

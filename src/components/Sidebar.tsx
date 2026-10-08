@@ -42,13 +42,13 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
           />
           <path
             d="M8.7 24.6C13 20.1 17.3 16.1 23 11.3M13.7 19.6L12.9 15.2M17.8 15.8L18.1 11.9"
-            stroke="#F6F5ED"
+            stroke="#FFF6DE"
             strokeWidth="1.35"
             strokeLinecap="round"
           />
           <path
             d="M7.2 27H25"
-            stroke="#C6D765"
+            stroke="#F4889B"
             strokeWidth="1.4"
             strokeLinecap="round"
           />

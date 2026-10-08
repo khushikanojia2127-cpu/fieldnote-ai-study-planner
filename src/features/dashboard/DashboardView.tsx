@@ -162,25 +162,25 @@ export function DashboardView({
               />
               <path
                 d="M121 77C108 77 94 71 87 58C80 45 82 31 85 20C105 27 119 37 124 51C127 60 126 70 121 77Z"
-                fill="#A9C696"
+                fill="#70B7DF"
               />
               <path
                 d="M108 93C96 88 83 89 73 98C62 108 60 121 61 135C81 132 96 125 103 114C107 107 109 100 108 93Z"
-                fill="#D1DEA6"
+                fill="#F7DCE0"
               />
               <path
                 d="M136 60C137 47 146 36 158 32C170 28 179 30 188 33C182 49 173 59 161 63C151 66 142 64 136 60Z"
-                fill="#87AA7D"
+                fill="#F4889B"
               />
               <path
                 d="M91 146C106 122 121 101 151 71"
-                stroke="#325C42"
+                stroke="#DCEAF8"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
               <path
                 d="M119 100L106 97M136 83L137 68M153 66L166 54"
-                stroke="#325C42"
+                stroke="#DCEAF8"
                 strokeWidth="1.2"
                 strokeLinecap="round"
               />

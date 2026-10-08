@@ -89,12 +89,12 @@ export interface AppData {
 }
 
 export const palette = [
-  "#719677",
-  "#b18a55",
-  "#7c8da8",
-  "#aa7771",
-  "#8e83a9",
-  "#6d9694",
+  "#405A98",
+  "#2F7FB0",
+  "#C4526C",
+  "#636EAB",
+  "#477B85",
+  "#8C5268",
 ];
 
 export function newId(): string {
