@@ -347,7 +347,7 @@ export function DashboardView({
           ) : (
             <EmptyState
               title="A fresh page"
-              message="There are no study blocks on today's page yet."
+              message="Nothing is scheduled for today yet. Create a plan when you're ready."
               action={
                 <button
                   className="button button-secondary"

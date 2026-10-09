@@ -4,6 +4,7 @@
 
 - Show today's study sessions, upcoming deadlines, subjects, study-plan activities, completed tasks, recent activity and overall progress.
 - Persist student-created planner data in this browser without requiring login; provide a visible way to clear/reset local data. If starter records are shown, label each set as editable sample data.
+- Do not prefill a student's first visit with a study schedule. Show the planner's empty state and opt-in creation actions until the student explicitly requests AI plan generation or adds a session; show “Refresh AI draft” only when a plan exists.
 
 ## [x] Editable subjects, topics and academic tasks
 
@@ -15,6 +16,7 @@
 - Let students provide subjects/topics, available study time, exam/assignment dates, preferred study duration and study goals.
 - Generate a structured personalized study schedule using those inputs plus task deadlines, priority and estimated effort; show conflicts or missing information instead of inventing academic content.
 - Let students add, move, reschedule, edit and complete study sessions. Label AI-generated plans, keep them editable, and remind students to review them before relying on them.
+- When reading an existing local workspace, remove only the three known prefilled demo-session records (`sample-session-one`, `sample-session-two`, `sample-session-three`) and preserve every other stored session.
 
 ## [x] Grounded AI Study Assistant
 

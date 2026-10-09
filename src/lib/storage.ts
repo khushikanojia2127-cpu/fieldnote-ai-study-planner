@@ -2,6 +2,11 @@ import type { AppData } from "../types";
 import { newId } from "../types";
 
 const STORAGE_KEY = "fieldnote.study-planner.v1";
+const LEGACY_SAMPLE_SESSION_IDS = new Set([
+  "sample-session-one",
+  "sample-session-two",
+  "sample-session-three",
+]);
 
 export function dateKey(offset = 0): string {
   const date = new Date();
@@ -64,42 +69,7 @@ export function makeSampleData(): AppData {
         completed: true,
       },
     ],
-    sessions: [
-      {
-        id: "sample-session-one",
-        title: "Variables & data types",
-        subjectId,
-        date: dateKey(0),
-        startTime: "09:30",
-        minutes: 25,
-        focus:
-          "Write a tiny example and explain each data type in your own words.",
-        completed: false,
-        aiGenerated: false,
-      },
-      {
-        id: "sample-session-two",
-        title: "Operators",
-        subjectId,
-        date: dateKey(0),
-        startTime: "11:00",
-        minutes: 25,
-        focus: "Practice with three short expressions.",
-        completed: false,
-        aiGenerated: false,
-      },
-      {
-        id: "sample-session-three",
-        title: "Function recap",
-        subjectId,
-        date: dateKey(1),
-        startTime: "10:00",
-        minutes: 45,
-        focus: "Recall the example without looking, then check your notes.",
-        completed: false,
-        aiGenerated: false,
-      },
-    ],
+    sessions: [],
     notes: [],
     quizzes: [],
     preferences: {
@@ -124,12 +94,23 @@ function looksLikeAppData(value: unknown): value is AppData {
   );
 }
 
+function removeLegacySampleSessions(data: AppData): AppData {
+  const sessions = data.sessions.filter(
+    (session) => !LEGACY_SAMPLE_SESSION_IDS.has(session.id),
+  );
+  if (sessions.length === data.sessions.length) return data;
+
+  const migrated = { ...data, sessions };
+  saveData(migrated);
+  return migrated;
+}
+
 export function loadData(): AppData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed: unknown = JSON.parse(raw);
-      if (looksLikeAppData(parsed)) return parsed;
+      if (looksLikeAppData(parsed)) return removeLegacySampleSessions(parsed);
     }
   } catch {
     // If storage is unavailable or a prior value is malformed, start with editable sample data.

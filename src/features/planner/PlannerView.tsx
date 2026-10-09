@@ -235,9 +235,15 @@ export function PlannerView({
                 {sessions.length === 1 ? "block" : "blocks"}
               </h2>
             </div>
-            <button className="text-link" onClick={onGenerate} disabled={busy}>
-              <RefreshCw size={14} /> Refresh AI draft
-            </button>
+            {sessions.length > 0 && (
+              <button
+                className="text-link"
+                onClick={onGenerate}
+                disabled={busy}
+              >
+                <RefreshCw size={14} /> Refresh AI draft
+              </button>
+            )}
           </div>
           {sessions.length ? (
             <div className="schedule-days">
@@ -388,7 +394,7 @@ export function PlannerView({
             <Card>
               <EmptyState
                 title="No sessions planned"
-                message="Add your subjects and topics, then ask AI for a starting draft—or add a study block yourself."
+                message="Nothing is scheduled until you decide to create it. Request an AI draft when you're ready, or add a study block yourself."
               />
             </Card>
           )}
