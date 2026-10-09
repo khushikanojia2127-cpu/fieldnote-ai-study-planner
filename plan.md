@@ -2,7 +2,9 @@
 
 ## Product scope
 
-Build a responsive study-planning web app for college students from the accepted project Blueprint and the attached project report. Deliver a dashboard; editable subjects/topics; academic task and deadline management; AI-generated, editable study schedules; a grounded AI Study Assistant; student-content-based notes and summaries; quizzes with answer submission and feedback; progress tracking; and visible responsible-AI guidance. The attached PDF is a project report, not a trustworthy complete course syllabus. Do not fabricate course material: let students create their own content and clearly identify any optional starter records as editable sample data.
+Build a responsive study-planning web app for college students from the accepted project Blueprint and the attached project report. Deliver a dashboard; editable subjects/topics; academic task and deadline management; AI-generated, editable study schedules; a grounded AI Study Assistant; student-content-based notes and summaries; quizzes with answer submission and feedback; progress tracking; visible responsible-AI guidance; and a four-step first-open walkthrough that explains how to set up and use the planner. The attached PDF is a project report, not a trustworthy complete course syllabus. Do not fabricate course material: let students create their own content and clearly identify any optional starter records as editable sample data.
+
+On the first open in a browser, show the guide once, with Back/Next, Skip/Finish, and a persistent “How it works” control to reopen it. Store only the guide-seen preference locally. Explain subjects/topics, tasks/deadlines, drafting and reviewing study plans, practice tools, progress, local data storage and the fact that selected text reaches Manus AI only when the student requests an AI action.
 
 Optional automatic/email deadline reminders, accounts/login, and publication are out of scope. Use browser-local persistence so the planner works without registration. AI requests use the configured server-side Manus AI service; the browser must never receive the server credential.
 
@@ -12,12 +14,14 @@ Optional automatic/email deadline reminders, accounts/login, and publication are
 - Use the configured Manus platform endpoint and server credential at runtime to call the OpenAI-compatible chat-completions endpoint. Do not hardcode credentials or request a separate provider key. Validate action inputs and model output; present generated text as AI-produced and editable. AI output is grounded only in the subject/topic/notes/question and schedule constraints supplied by the student. If generation fails, retain student input and show a recoverable error; do not fabricate an AI response.
 - Persist subjects, topics, tasks, study sessions, notes, quiz attempts and user preferences in versioned browser `localStorage`. Seed only a small, visibly labelled editable sample set for a first-run preview; keep a one-click clear/reset option. No account, remote student-data database, email or reminders.
 - Use client modules for the dashboard, navigation, subject/task CRUD, planner generation/editing, assistant, notes/summary, quiz, progress and shared storage/types. Favor semantic, accessible controls and responsive layouts.
+- Add a self-paced four-step onboarding component in `src/components/IntroTour.tsx`; open it on a browser's first visit, persist dismissal locally, and provide a global action to reopen it later. Keep the guide's keyboard dismissal, clear progress, skip and next/back controls accessible at desktop and mobile sizes.
 - Schedule generation should include the student's chosen study window, task deadlines/priority/estimated effort, subject topics, available study time, preferred session length and target. AI proposes a structured schedule; the UI validates it, shows conflicts or gaps, and allows students to revise, move, reschedule and complete each session.
 - Summary generation must use only text the student entered. Quiz generation must use only the selected student-provided notes/topic; support answer selection/submission, scoring, explanations, retry/review and visible AI attribution.
 
 ## Project structure
 
 - `src/` — React/TypeScript client entry, app shell, UI components, feature views and styling.
+- `src/components/IntroTour.tsx` — first-open guide, step navigation, privacy note and reopenable introduction.
 - `src/features/dashboard/` — deadline, today, activity and aggregate progress summaries.
 - `src/features/subjects/` — subject/topic CRUD and editable sample-data handling.
 - `src/features/tasks/` — academic task CRUD, fields, filters and completion state.
@@ -38,7 +42,7 @@ Optional automatic/email deadline reminders, accounts/login, and publication are
 - **Color Philosophy:** Deep periwinkle navy anchors navigation and primary actions; clear sky blue adds lift and progress; warm cream keeps the study surface soft; coral marks attention and quick actions. Preserve strong contrast and retain botanical linework as a quiet motif rather than a green color wash.
 - **Layout Paradigm:** A field-notes workspace: narrow, stable instrument-rail navigation; a wide working canvas; and context cards for “today,” upcoming deadlines and AI provenance. Use asymmetrical editorial sections rather than a centered grid of identical cards.
 - **Signature Elements:** Fine botanical linework and leaf-vein dividers; specimen-style subject chips recolored with navy/blue/coral swatches; ruled notebook and index-label details for study sessions and source notes.
-- **Interaction Philosophy:** Direct manipulation, quick inline edits, clear completion controls and reversible scheduling changes. AI suggestions are drafts, not commands; always keep the source/context visible and explain conflicts before accepting a plan.
+- **Interaction Philosophy:** Direct manipulation, quick inline edits, clear completion controls and reversible scheduling changes. AI suggestions are drafts, not commands; always keep the source/context visible and explain conflicts before accepting a plan. The first-open tutorial is self-paced and dismissible, remembers completion only in this browser, and remains reachable from a global “How it works” control.
 - **Animation:** Subtle 140–220ms opacity/position transitions for opening panels and completing items; gentle progress-ring movement; reduced-motion support; no perpetual or distracting animation.
 - **Typography System:** DM Sans for interface/body copy paired with Fraunces for large headings and specimen names. Increase the existing compact type scale by roughly one pixel at small sizes (about 7% overall), keeping its hierarchy and tabular numerals for durations/progress.
 - **Brand Essence:** “Fieldnote turns your own coursework into a plan you can actually follow.” Personality: grounded, curious, encouraging.

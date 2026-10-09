@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  CircleHelp,
   Leaf,
   Menu,
   Plus,
@@ -8,8 +9,9 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BrandMark, Sidebar } from "./components/Sidebar";
+import { IntroTour } from "./components/IntroTour";
 import { AssistantView } from "./features/assistant/AssistantView";
 import { DashboardView } from "./features/dashboard/DashboardView";
 import { NotesView } from "./features/notes/NotesView";
@@ -32,6 +34,7 @@ const viewDetails: Record<ViewKey, { label: string; subtitle: string }> = {
   quizzes: { label: "Quizzes", subtitle: "Practice shelf" },
   progress: { label: "Progress", subtitle: "Study rhythm" },
 };
+const INTRO_STORAGE_KEY = "fieldnote.intro.seen.v1";
 
 export default function App() {
   const [data, setData] = useState<AppData>(() => loadData());
@@ -41,6 +44,22 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [busyPlan, setBusyPlan] = useState(false);
   const [toast, setToast] = useState("");
+  const [introOpen, setIntroOpen] = useState(false);
+  useEffect(() => {
+    try {
+      setIntroOpen(window.localStorage.getItem(INTRO_STORAGE_KEY) !== "seen");
+    } catch {
+      setIntroOpen(true);
+    }
+  }, []);
+  const dismissIntro = useCallback(() => {
+    try {
+      window.localStorage.setItem(INTRO_STORAGE_KEY, "seen");
+    } catch {
+      // Keep the guide usable if browser storage is unavailable.
+    }
+    setIntroOpen(false);
+  }, []);
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
@@ -318,6 +337,17 @@ export default function App() {
             )}
           </div>
           <div className="topbar-actions">
+            <button
+              className="intro-help-trigger"
+              type="button"
+              onClick={() => setIntroOpen(true)}
+              aria-haspopup="dialog"
+              aria-label="How to use Fieldnote"
+              title="How to use Fieldnote"
+            >
+              <CircleHelp size={16} />
+              <span>How it works</span>
+            </button>
             <span className="local-status">
               <span /> LOCAL WORKSPACE
             </span>
@@ -416,6 +446,7 @@ export default function App() {
         tabIndex={-1}
         onClick={() => setSearchOpen(false)}
       />
+      <IntroTour open={introOpen} onDismiss={dismissIntro} onNavigate={goTo} />
     </div>
   );
 }
