@@ -3,12 +3,15 @@
 ## [x] Student dashboard and local workspace
 
 - Show today's study sessions, upcoming deadlines, subjects, study-plan activities, completed tasks, recent activity and overall progress.
-- Persist student-created planner data in this browser without requiring login; provide a visible way to clear/reset local data. If starter records are shown, label each set as editable sample data.
+- Persist student-created planner data in this browser without requiring login; provide a visible clear-local-data control with an explicit confirmation.
+- Start a fresh browser workspace with no placeholder subjects/topics, tasks/deadlines, sessions, notes, quiz attempts or editable-sample-workspace banner; show opt-in actions to add a subject or create a plan.
+- On existing local workspaces, remove only the fixed demo subject `sample-python-foundations`, demo tasks `sample-task-functions`, `sample-task-conditionals`, `sample-task-variables`, and demo sessions `sample-session-one`, `sample-session-two`, `sample-session-three`. Preserve every other stored subject, task, session, note, quiz and customized preference; if a preserved task, session, note or quiz references the removed demo subject, keep that record and clear its subject association to unassigned. Clear the planner goal only if it still exactly equals the old default placeholder, “Prepare steadily and revisit difficult topics.”; preserve any other goal and all other settings.
 - Do not prefill a student's first visit with a study schedule. Show the planner's empty state and opt-in creation actions until the student explicitly requests AI plan generation or adds a session; show “Refresh AI draft” only when a plan exists.
 
 ## [x] Editable subjects, topics and academic tasks
 
 - Let students create and manage subjects and their topics without inventing course-specific syllabus content.
+- Do not seed sample subjects or tasks; guide students to add a subject and their own topics before creating subject-linked tasks.
 - Let students add assignments, projects, revision activities and presentations. Each task supports title, subject association, description, deadline, priority, estimated effort, task type and pending/completed status; show pending, completed and upcoming views.
 
 ## [x] Personalized, editable study plans
@@ -16,7 +19,7 @@
 - Let students provide subjects/topics, available study time, exam/assignment dates, preferred study duration and study goals.
 - Generate a structured personalized study schedule using those inputs plus task deadlines, priority and estimated effort; show conflicts or missing information instead of inventing academic content.
 - Let students add, move, reschedule, edit and complete study sessions. Label AI-generated plans, keep them editable, and remind students to review them before relying on them.
-- When reading an existing local workspace, remove only the three known prefilled demo-session records (`sample-session-one`, `sample-session-two`, `sample-session-three`) and preserve every other stored session.
+- With no subjects, offer an explicit way to add a first subject before planning; show “Refresh AI draft” only when a plan exists.
 
 ## [x] Grounded AI Study Assistant
 

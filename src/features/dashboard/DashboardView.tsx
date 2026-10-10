@@ -145,8 +145,24 @@ export function DashboardView({
               ? `${sessions.length} focused blocks are on your desk today. Start with the next small step.`
               : "Your next study block can be small, focused, and yours."}
           </p>
-          <button className="button button-light" onClick={onGeneratePlan}>
-            <Sparkles size={15} /> Build my study plan <ArrowRight size={15} />
+          <button
+            className="button button-light"
+            onClick={
+              data.subjects.length
+                ? onGeneratePlan
+                : () => onNavigate("subjects")
+            }
+          >
+            {data.subjects.length ? (
+              <>
+                <Sparkles size={15} /> Build my study plan
+              </>
+            ) : (
+              <>
+                <BookOpen size={15} /> Add your first subject
+              </>
+            )}
+            <ArrowRight size={15} />
           </button>
         </div>
         <div className="focus-illustration" aria-hidden="true">
@@ -346,14 +362,32 @@ export function DashboardView({
             </div>
           ) : (
             <EmptyState
-              title="A fresh page"
-              message="Nothing is scheduled for today yet. Create a plan when you're ready."
+              title={
+                data.subjects.length ? "A fresh page" : "Start with a subject"
+              }
+              message={
+                data.subjects.length
+                  ? "Nothing is scheduled for today yet. Create a plan when you're ready."
+                  : "Add your course and topics first. Nothing will be scheduled until you choose to create a plan."
+              }
               action={
                 <button
                   className="button button-secondary"
-                  onClick={onGeneratePlan}
+                  onClick={
+                    data.subjects.length
+                      ? onGeneratePlan
+                      : () => onNavigate("subjects")
+                  }
                 >
-                  Draft a plan
+                  {data.subjects.length ? (
+                    <>
+                      <Sparkles size={15} /> Draft a plan
+                    </>
+                  ) : (
+                    <>
+                      <BookOpen size={15} /> Add a subject
+                    </>
+                  )}
                 </button>
               }
             />
@@ -427,21 +461,41 @@ export function DashboardView({
             </div>
           ) : (
             <EmptyState
-              title="Nothing due"
-              message="Add a task when something lands on your desk."
+              title={
+                data.subjects.length ? "Nothing due" : "Add your first subject"
+              }
+              message={
+                data.subjects.length
+                  ? "Add a task when something lands on your desk."
+                  : "Create a subject first so you can connect tasks to your own coursework."
+              }
               action={
                 <button
                   className="button button-secondary"
-                  onClick={onCreateTask}
+                  onClick={
+                    data.subjects.length
+                      ? onCreateTask
+                      : () => onNavigate("subjects")
+                  }
                 >
-                  <Plus size={15} /> Add a task
+                  {data.subjects.length ? (
+                    <>
+                      <Plus size={15} /> Add a task
+                    </>
+                  ) : (
+                    <>
+                      <BookOpen size={15} /> Add a subject
+                    </>
+                  )}
                 </button>
               }
             />
           )}
-          <button className="add-task-line" onClick={onCreateTask}>
-            <Plus size={15} /> Add an academic task
-          </button>
+          {data.subjects.length > 0 && (
+            <button className="add-task-line" onClick={onCreateTask}>
+              <Plus size={15} /> Add an academic task
+            </button>
+          )}
         </Card>
       </div>
       <div className="bottom-grid">

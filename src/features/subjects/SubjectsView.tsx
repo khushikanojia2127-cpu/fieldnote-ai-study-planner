@@ -78,8 +78,6 @@ export function SubjectsView({
       sessions: state.sessions.filter((session) => session.subjectId !== id),
       notes: state.notes.filter((note) => note.subjectId !== id),
       quizzes: state.quizzes.filter((quiz) => quiz.subjectId !== id),
-      sampleWorkspace:
-        state.sampleWorkspace && id !== "sample-python-foundations",
     }));
     setSelected(null);
   };
@@ -99,15 +97,6 @@ export function SubjectsView({
           </button>
         }
       />
-      {data.sampleWorkspace && (
-        <div className="inline-note">
-          <Leaf size={16} />
-          <span>
-            The Python starter is editable sample data from the project
-            report—not a course syllabus. Your subjects stay on this device.
-          </span>
-        </div>
-      )}
       {data.subjects.length ? (
         <div className="subjects-layout">
           <div className="subject-cards">

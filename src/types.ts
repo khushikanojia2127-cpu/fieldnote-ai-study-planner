@@ -85,7 +85,6 @@ export interface AppData {
   notes: StudyNote[];
   quizzes: StudyQuiz[];
   preferences: PlannerPreferences;
-  sampleWorkspace: boolean;
 }
 
 export const palette = [

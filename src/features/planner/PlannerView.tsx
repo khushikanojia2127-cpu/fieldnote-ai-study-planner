@@ -25,11 +25,13 @@ export function PlannerView({
   data,
   onUpdate,
   onGenerate,
+  onCreateSubject,
   busy,
 }: {
   data: AppData;
   onUpdate: (transform: (state: AppData) => AppData) => void;
   onGenerate: () => void;
+  onCreateSubject: () => void;
   busy: boolean;
 }) {
   const [adding, setAdding] = useState(false);
@@ -114,14 +116,19 @@ export function PlannerView({
         title="Study plan"
         description="A draft rhythm—not a deadline machine. Adjust anything that doesn't fit."
         action={
-          <LoadingButton
-            className="button button-primary"
-            onClick={onGenerate}
-            busy={busy}
-            disabled={!data.subjects.length}
-          >
-            <Sparkles size={16} /> Draft with AI
-          </LoadingButton>
+          data.subjects.length ? (
+            <LoadingButton
+              className="button button-primary"
+              onClick={onGenerate}
+              busy={busy}
+            >
+              <Sparkles size={16} /> Draft with AI
+            </LoadingButton>
+          ) : (
+            <button className="button button-primary" onClick={onCreateSubject}>
+              <Plus size={16} /> Add a subject
+            </button>
+          )
         }
       />
       <div className="plan-intro-banner">
@@ -393,8 +400,26 @@ export function PlannerView({
           ) : (
             <Card>
               <EmptyState
-                title="No sessions planned"
-                message="Nothing is scheduled until you decide to create it. Request an AI draft when you're ready, or add a study block yourself."
+                title={
+                  data.subjects.length
+                    ? "No sessions planned"
+                    : "Start with a subject"
+                }
+                message={
+                  data.subjects.length
+                    ? "Nothing is scheduled until you decide to create it. Request an AI draft when you're ready, or add a study block yourself."
+                    : "Add your course and topics first. Nothing will be scheduled or sent to AI until you choose to create a plan."
+                }
+                action={
+                  !data.subjects.length ? (
+                    <button
+                      className="button button-primary"
+                      onClick={onCreateSubject}
+                    >
+                      <Plus size={15} /> Add your first subject
+                    </button>
+                  ) : undefined
+                }
               />
             </Card>
           )}

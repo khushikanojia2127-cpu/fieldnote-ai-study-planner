@@ -226,16 +226,16 @@ export default function App() {
     searchResults.subjects.length +
     searchResults.tasks.length +
     searchResults.notes.length;
-  const resetSamples = () => {
+  const clearLocalData = () => {
     if (
       !window.confirm(
-        "Clear the editable sample content and start with an empty local workspace?",
+        "Clear all study data saved in this browser? This removes subjects, tasks, sessions, notes, quizzes and planner preferences.",
       )
     )
       return;
     setData(clearWorkspace());
     setToast(
-      "Sample data cleared. Your workspace is now empty and ready for your own coursework.",
+      "Local study data cleared. Add a subject and your own topics to begin.",
     );
   };
   return (
@@ -366,23 +366,6 @@ export default function App() {
           onClick={() => setSearchOpen(false)}
         />
         <main className="page-content">
-          {data.sampleWorkspace && (
-            <div className="sample-notice">
-              <span className="sample-notice-icon">
-                <Leaf size={15} />
-              </span>
-              <span>
-                <strong>Editable sample workspace</strong>
-                <small>
-                  Python topics shown as examples in your report—not your course
-                  syllabus.
-                </small>
-              </span>
-              <button onClick={resetSamples}>
-                <RotateCcw size={13} /> Start fresh
-              </button>
-            </div>
-          )}
           {view === "today" && (
             <DashboardView
               data={data}
@@ -408,6 +391,7 @@ export default function App() {
               data={data}
               onUpdate={updateData}
               onGenerate={() => void generateStudyPlan()}
+              onCreateSubject={() => goTo("subjects")}
               busy={busyPlan}
             />
           )}
@@ -427,6 +411,13 @@ export default function App() {
             <Leaf size={12} /> Planner data saves in this browser. Text you send
             to AI is processed by Manus AI on request.
           </span>
+          <button
+            className="footer-clear-button"
+            type="button"
+            onClick={clearLocalData}
+          >
+            <RotateCcw size={12} /> Clear local data
+          </button>
         </footer>
       </div>
       {toast && (
