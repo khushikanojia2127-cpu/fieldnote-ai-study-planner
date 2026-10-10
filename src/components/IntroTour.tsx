@@ -33,7 +33,7 @@ const steps: TourStep[] = [
       "Add the courses and topics you are actually studying. Fieldnote uses your input instead of guessing your syllabus.",
     bullets: [
       "Open Subjects to add a course and its topics.",
-      "The Python examples are editable demo data, not your course syllabus.",
+      "Nothing is prefilled; add only the courses and topics you are studying.",
     ],
     destination: "subjects",
     actionLabel: "Open subjects",

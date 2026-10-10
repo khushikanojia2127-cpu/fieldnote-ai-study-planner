@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -19,15 +20,11 @@ import {
 } from "../../components/UI";
 import type { AppData, ViewKey } from "../../types";
 import { dateKey } from "../../lib/storage";
-
-const weekday = new Intl.DateTimeFormat("en", { weekday: "long" }).format(
-  new Date(),
-);
-const fullDate = new Intl.DateTimeFormat("en", {
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-}).format(new Date());
+import {
+  formatDate,
+  formatDateTime,
+  getLocalDateSettings,
+} from "../../lib/format";
 
 export function DashboardView({
   data,
@@ -45,6 +42,23 @@ export function DashboardView({
   onGeneratePlan: () => void;
 }) {
   const today = dateKey(0);
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const interval = window.setInterval(() => setNow(new Date()), 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
+  const { timeZone } = getLocalDateSettings();
+  const weekday = formatDate(today, { weekday: "long" });
+  const fullDate = formatDate(today, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+  const localTime = formatDateTime(now.toISOString(), {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
   const sessions = data.sessions
     .filter((s) => s.date === today)
     .sort((a, b) => a.startTime.localeCompare(b.startTime));
@@ -59,9 +73,9 @@ export function DashboardView({
   const minutesToday = sessions.reduce((sum, s) => sum + s.minutes, 0);
   const completedSessions = sessions.filter((s) => s.completed).length;
   const greeting =
-    new Date().getHours() < 12
+    now.getHours() < 12
       ? "Good morning"
-      : new Date().getHours() < 17
+      : now.getHours() < 17
         ? "Good afternoon"
         : "Good evening";
   const recentActivity: {
@@ -117,7 +131,7 @@ export function DashboardView({
   return (
     <div className="page-stack dashboard-page">
       <PageTitle
-        eyebrow={`${weekday.toUpperCase()} · ${fullDate.toUpperCase()}`}
+        eyebrow={`${weekday} · ${fullDate} · ${localTime} · ${timeZone}`.toUpperCase()}
         title={`${greeting}, learner.`}
         description="A little structure for a lot of good thinking."
         action={
@@ -586,11 +600,7 @@ export function DashboardView({
                       style={{ height: `${height}%` }}
                     />
                   </div>
-                  <span>
-                    {new Intl.DateTimeFormat("en", {
-                      weekday: "narrow",
-                    }).format(new Date(`${date}T12:00:00`))}
-                  </span>
+                  <span>{formatDate(date, { weekday: "narrow" })}</span>
                 </div>
               );
             })}
@@ -627,12 +637,12 @@ export function DashboardView({
                   <span>{item.detail}</span>
                 </div>
                 <time>
-                  {new Intl.DateTimeFormat("en", {
+                  {formatDateTime(item.at, {
                     month: "short",
                     day: "numeric",
                     hour: "numeric",
                     minute: "2-digit",
-                  }).format(new Date(item.at))}
+                  })}
                 </time>
               </div>
             ))}

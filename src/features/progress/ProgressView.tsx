@@ -13,6 +13,7 @@ import {
   ProgressBar,
   Tag,
 } from "../../components/UI";
+import { formatDate } from "../../lib/format";
 import { dateKey } from "../../lib/storage";
 import type { AppData, ViewKey } from "../../types";
 
@@ -164,9 +165,7 @@ export function ProgressView({
                   />
                 </div>
                 <span className="chart-label">
-                  {new Intl.DateTimeFormat("en", { weekday: "short" }).format(
-                    new Date(`${day.key}T12:00:00`),
-                  )}
+                  {formatDate(day.key, { weekday: "short" })}
                 </span>
               </div>
             ))}

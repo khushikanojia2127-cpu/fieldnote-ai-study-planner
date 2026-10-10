@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { generateQuiz } from "../../lib/ai";
+import { formatDateTime } from "../../lib/format";
 import {
   Card,
   EmptyState,
@@ -340,10 +341,10 @@ export function QuizzesView({
                         <h3>{quiz.title}</h3>
                         <span>
                           {quiz.topic} · {quiz.questions.length} questions ·{" "}
-                          {new Intl.DateTimeFormat("en", {
+                          {formatDateTime(quiz.createdAt, {
                             month: "short",
                             day: "numeric",
-                          }).format(new Date(quiz.createdAt))}
+                          })}
                         </span>
                       </div>
                       {typeof quiz.lastScore === "number" && (

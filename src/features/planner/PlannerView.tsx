@@ -18,6 +18,7 @@ import {
   PageTitle,
   Tag,
 } from "../../components/UI";
+import { formatDate } from "../../lib/format";
 import { dateKey } from "../../lib/storage";
 import { newId, type AppData, type StudySession } from "../../types";
 
@@ -258,23 +259,19 @@ export function PlannerView({
                 <div className="schedule-day" key={date}>
                   <div className="schedule-date">
                     <span className="date-marker">
-                      {new Intl.DateTimeFormat("en", { day: "2-digit" }).format(
-                        new Date(`${date}T12:00:00`),
-                      )}
+                      {formatDate(date, { day: "2-digit" })}
                     </span>
                     <span>
                       <strong>
                         {date === dateKey()
                           ? "Today"
-                          : new Intl.DateTimeFormat("en", {
-                              weekday: "long",
-                            }).format(new Date(`${date}T12:00:00`))}
+                          : formatDate(date, { weekday: "long" })}
                       </strong>
                       <small>
-                        {new Intl.DateTimeFormat("en", {
+                        {formatDate(date, {
                           month: "long",
                           day: "numeric",
-                        }).format(new Date(`${date}T12:00:00`))}
+                        })}
                       </small>
                     </span>
                     <span className="date-tally">

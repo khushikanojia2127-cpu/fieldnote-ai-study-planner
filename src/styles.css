@@ -5031,3 +5031,20 @@ textarea:focus-visible {
     text-align: left;
   }
 }
+
+
+/* Local date, clock and timezone shown on the dashboard. */
+.dashboard-page > .page-title-row .eyebrow {
+  max-width: 92ch;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .dashboard-page > .page-title-row .eyebrow {
+    max-width: 42ch;
+    font-size: 8px;
+    letter-spacing: 1px;
+    line-height: 1.7;
+  }
+}

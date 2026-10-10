@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Card, EmptyState, Modal, PageTitle, Tag } from "../../components/UI";
+import { formatDate } from "../../lib/format";
 import { dateKey } from "../../lib/storage";
 import {
   newId,
@@ -156,10 +157,7 @@ export function TasksView({
         ? "Today"
         : days === 1
           ? "Tomorrow"
-          : new Intl.DateTimeFormat("en", {
-              month: "short",
-              day: "numeric",
-            }).format(new Date(`${date}T12:00:00`));
+          : formatDate(date, { month: "short", day: "numeric" });
   };
   return (
     <div className="page-stack">

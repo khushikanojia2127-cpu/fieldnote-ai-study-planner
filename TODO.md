@@ -7,12 +7,14 @@
 - Start a fresh browser workspace with no placeholder subjects/topics, tasks/deadlines, sessions, notes, quiz attempts or editable-sample-workspace banner; show opt-in actions to add a subject or create a plan.
 - On existing local workspaces, remove only the fixed demo subject `sample-python-foundations`, demo tasks `sample-task-functions`, `sample-task-conditionals`, `sample-task-variables`, and demo sessions `sample-session-one`, `sample-session-two`, `sample-session-three`. Preserve every other stored subject, task, session, note, quiz and customized preference; if a preserved task, session, note or quiz references the removed demo subject, keep that record and clear its subject association to unassigned. Clear the planner goal only if it still exactly equals the old default placeholder, “Prepare steadily and revisit difficult topics.”; preserve any other goal and all other settings.
 - Do not prefill a student's first visit with a study schedule. Show the planner's empty state and opt-in creation actions until the student explicitly requests AI plan generation or adds a session; show “Refresh AI draft” only when a plan exists.
+- Format the dashboard date from the visitor's browser locale; show the local time, detected IANA timezone and timezone abbreviation from browser settings; refresh the clock at least once a minute. Do not hard-code a country or use location tracking.
 
 ## [x] Editable subjects, topics and academic tasks
 
 - Let students create and manage subjects and their topics without inventing course-specific syllabus content.
 - Do not seed sample subjects or tasks; guide students to add a subject and their own topics before creating subject-linked tasks.
 - Let students add assignments, projects, revision activities and presentations. Each task supports title, subject association, description, deadline, priority, estimated effort, task type and pending/completed status; show pending, completed and upcoming views.
+- Format task deadlines and date-only study schedule entries using the visitor's locale and browser-local calendar date so they do not shift by a day.
 
 ## [x] Personalized, editable study plans
 
@@ -35,6 +37,7 @@
 ## [x] Progress and responsible-AI transparency
 
 - Track completed tasks, completed study sessions, subject-level progress, quiz performance and study consistency.
+- Localize weekly chart weekday labels using the visitor's browser locale and timezone.
 - Clearly mark generated content, make AI output editable, communicate uncertainty where applicable, remind students to verify AI-generated information, and guide them away from overdependence.
 
 ## [x] Botanical-lab interface, reference palette and integrated AI service
