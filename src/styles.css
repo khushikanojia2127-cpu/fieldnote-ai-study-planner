@@ -5032,10 +5032,9 @@ textarea:focus-visible {
   }
 }
 
-
-/* Local date, clock and timezone shown on the dashboard. */
+/* Localized date only, shown on the dashboard. */
 .dashboard-page > .page-title-row .eyebrow {
-  max-width: 92ch;
+  max-width: 48ch;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }

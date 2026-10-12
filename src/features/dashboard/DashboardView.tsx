@@ -20,11 +20,7 @@ import {
 } from "../../components/UI";
 import type { AppData, ViewKey } from "../../types";
 import { dateKey } from "../../lib/storage";
-import {
-  formatDate,
-  formatDateTime,
-  getLocalDateSettings,
-} from "../../lib/format";
+import { formatDate, formatDateTime } from "../../lib/format";
 
 export function DashboardView({
   data,
@@ -47,17 +43,11 @@ export function DashboardView({
     const interval = window.setInterval(() => setNow(new Date()), 60_000);
     return () => window.clearInterval(interval);
   }, []);
-  const { timeZone } = getLocalDateSettings();
   const weekday = formatDate(today, { weekday: "long" });
   const fullDate = formatDate(today, {
     month: "long",
     day: "numeric",
     year: "numeric",
-  });
-  const localTime = formatDateTime(now.toISOString(), {
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
   });
   const sessions = data.sessions
     .filter((s) => s.date === today)
@@ -131,7 +121,7 @@ export function DashboardView({
   return (
     <div className="page-stack dashboard-page">
       <PageTitle
-        eyebrow={`${weekday} · ${fullDate} · ${localTime} · ${timeZone}`.toUpperCase()}
+        eyebrow={`${weekday} · ${fullDate}`.toUpperCase()}
         title={`${greeting}, learner.`}
         description="A little structure for a lot of good thinking."
         action={

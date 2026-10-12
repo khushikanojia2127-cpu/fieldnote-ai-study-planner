@@ -7,7 +7,7 @@
 - Start a fresh browser workspace with no placeholder subjects/topics, tasks/deadlines, sessions, notes, quiz attempts or editable-sample-workspace banner; show opt-in actions to add a subject or create a plan.
 - On existing local workspaces, remove only the fixed demo subject `sample-python-foundations`, demo tasks `sample-task-functions`, `sample-task-conditionals`, `sample-task-variables`, and demo sessions `sample-session-one`, `sample-session-two`, `sample-session-three`. Preserve every other stored subject, task, session, note, quiz and customized preference; if a preserved task, session, note or quiz references the removed demo subject, keep that record and clear its subject association to unassigned. Clear the planner goal only if it still exactly equals the old default placeholder, “Prepare steadily and revisit difficult topics.”; preserve any other goal and all other settings.
 - Do not prefill a student's first visit with a study schedule. Show the planner's empty state and opt-in creation actions until the student explicitly requests AI plan generation or adds a session; show “Refresh AI draft” only when a plan exists.
-- Format the dashboard date from the visitor's browser locale; show the local time, detected IANA timezone and timezone abbreviation from browser settings; refresh the clock at least once a minute. Do not hard-code a country or use location tracking.
+- Show only the localized local-calendar date (weekday and full date) in the dashboard header. Do not show a clock, timezone abbreviation or timezone name there. Use browser locale/timezone for the date, keep date-only comparisons on the visitor's local calendar, and do not hard-code a country or request location access.
 
 ## [x] Editable subjects, topics and academic tasks
 
